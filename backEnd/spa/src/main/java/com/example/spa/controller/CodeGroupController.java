@@ -22,6 +22,17 @@ public class CodeGroupController {
     @PostMapping
     public ResponseEntity<CodeGroup> register(@Validated @RequestBody CodeGroup codeGroup) throws Exception{
         log.info("register");
+        System.out.println("=========================");
+        System.out.println("=========================");
+        System.out.println("=========================");
+        System.out.println("=========================");
+        System.out.println("=========================");
+        System.out.println("=========================");
+        System.out.println(codeGroup.toString());
+        System.out.println("=========================");
+        System.out.println("=========================");
+        System.out.println("=========================");
+        System.out.println("=========================");
         service.register(codeGroup);
         log.info("register codeGroup.getCodeGroupNo()= "+ codeGroup.getGroupCode());
         return new ResponseEntity<>(codeGroup, HttpStatus.OK);

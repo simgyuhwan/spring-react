@@ -38,8 +38,8 @@ $(document).ready(function(){
     $("#codeGroupRegisterBtn").on("click", function(){
         // id 값인 'groupCode', 'groupName' 값을 가져와서 담아준다.
         var codeGroupObject = {
-          groupCode = $("#groupCode").val(),
-          groupName = $("groupName").val()
+          groupCode : $("#groupCode").val(),
+          groupName : $("#groupName").val()
         };
 
         // JSON 파일을 문자열로 출력해준다. 입력된 값을 문자열로 출력한다고 생각하자.
@@ -87,7 +87,7 @@ $(document).ready(function(){
 
         $.ajax({
             type: "PUT",
-            url: "/codegroup/" + groupCodeVal,
+            url: "/codegroups/" + groupCodeVal,
             data: JSON.stringify(codeGroupObject),
             contentType: "application/json; charset=UTF-8",
             success: function(){
@@ -104,4 +104,5 @@ $(document).ready(function(){
         $("#groupCode").val("");
         $("#groupName").val("");
     });
+
 });
