@@ -1,6 +1,7 @@
 package com.example.spa.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -8,11 +9,9 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @JsonIgnoreProperties(value = "hibernateLazyInitializer")
@@ -33,6 +32,11 @@ public class CodeGroup {
 
     @Column(length = 1)
     private String useYn ="Y";
+
+    @JsonIgnore
+    @OneToMany
+    @JoinColumn(name="groupCode")
+    private List<CodeDetail> codeDetails;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     @CreationTimestamp
