@@ -5,6 +5,7 @@ import com.example.spa.domain.MemberAuth;
 import com.example.spa.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -12,6 +13,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Locale;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -20,7 +22,7 @@ import java.util.List;
 public class MemberController {
 
     private final MemberService service;
-
+    private final MessageSource messageSource;
     private final PasswordEncoder passwordEncoder;
 
     @PostMapping
@@ -59,5 +61,22 @@ public class MemberController {
     public ResponseEntity<Void> remove(@PathVariable("userNo")Long userNo) throws Exception{
         service.remove(userNo);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    //관리자
+    @PostMapping(value = "/setup", produces = "text/plain;charset=UTF-8")
+    public ResponseEntity<String> setupAdmin(@Validated @RequestBody Member member) throws Exception{
+
+        if(service.countAll()==0) {
+            String inputPassword = member.getUserPw();
+            member.setUserPw(passwordEncoder.encode(inputPassword));
+
+            member.setJob("00");
+
+            service.setupAdmin(member);
+            return new ResponseEntity<>("SUCCESS", HttpStatus.OK);
+        }
+        String message = messageSource.getMessage("common.cannotSetupAdmin", null, Locale.KOREAN);
+        return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
     }
 }

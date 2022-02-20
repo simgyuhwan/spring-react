@@ -66,4 +66,5 @@ public class Member {
     public void clearAuthList(){
         authList.clear();
     }
+
 }
