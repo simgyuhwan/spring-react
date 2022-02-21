@@ -23,6 +23,11 @@ public class CustomUser extends User {
         this.member = member;
     }
 
+    public CustomUser(Member member,Collection<? extends GrantedAuthority> authorities){
+        super(member.getUserName(), member.getUserPw(), authorities);
+        this.member = member;
+    }
+
     public long getUserNo(){
         return member.getUserNo();
     }

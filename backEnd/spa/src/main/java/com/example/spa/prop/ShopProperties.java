@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Getter
 @Setter
 @Component
-@ConfigurationProperties("com.example.spa")
+@ConfigurationProperties("jwt")
 public class ShopProperties {
     private String secretKey;
 }

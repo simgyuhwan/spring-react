@@ -1,6 +1,8 @@
 package com.example.spa.config;
 
+import com.example.spa.common.security.CustomUserDetailService;
 import com.example.spa.common.security.filter.JwtAuthenticationFilter;
+import com.example.spa.common.security.provider.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;

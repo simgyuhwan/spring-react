@@ -60,10 +60,10 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
 
-        // userNo,userId, roles 값을 사용해서 Token을 생성한다.
+        // userNo,userId, roles 값을 사용해서 Token 을 생성한다.
         String token = jwtTokenProvider.createToken(userNo, userId, roles);
 
         // 이제 토큰 값을 응답 헤더의 Bearer 뒤에 넣어준당
-        response.addHeader(TOKEN_HEADER, TOKEN_PREFIX+ token);
+        response.addHeader(TOKEN_HEADER, TOKEN_PREFIX + token);
     }
 }

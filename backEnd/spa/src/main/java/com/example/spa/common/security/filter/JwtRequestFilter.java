@@ -31,7 +31,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         Authentication authentication = jwtTokenProvider.getAuthentication(header);
 
-        // 인증 데이터를 Spring 보안 컨텍스트에 추가하는 데 왜 할까?
+        // 인증 데이터를 Spring 보안 컨텍스트에 추가하는 데 왜 할까? 중간에 쓸 일이 있을 수 있으니까
         SecurityContextHolder.getContext().setAuthentication(authentication);
         filterChain.doFilter(request, response);
     }

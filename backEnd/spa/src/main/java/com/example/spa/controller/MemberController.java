@@ -1,5 +1,6 @@
 package com.example.spa.controller;
 
+import com.example.spa.common.security.domain.CustomUser;
 import com.example.spa.domain.Member;
 import com.example.spa.domain.MemberAuth;
 import com.example.spa.service.MemberService;
@@ -8,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -78,5 +80,18 @@ public class MemberController {
         }
         String message = messageSource.getMessage("common.cannotSetupAdmin", null, Locale.KOREAN);
         return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping("/myinfo")
+    public ResponseEntity<Member> getMyInfo(@AuthenticationPrincipal CustomUser customUser) throws Exception{
+        Long userNo = customUser.getUserNo();
+
+        log.info("register userNo = " + userNo);
+
+        Member member = service.read(userNo);
+
+        member.setUserPw("");
+
+        return new ResponseEntity<>(member, HttpStatus.OK);
     }
 }

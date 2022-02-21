@@ -11,6 +11,7 @@
 <script type="text/javascript" src="js/app/code-detail.js"></script>
 <script type="text/javascript" src="js/app/member.js"></script>
 <script type="text/javascript" src="js/app/setup-admin.js"></script>
+<script type="text/javascript" src="js/app/login.js"></script>
 
 <body>
     <h2 th:text="#{common.homeWelcome}"></h2>
@@ -159,6 +160,26 @@
     <div>
         <button id="adminRegisterBtn">REGISTER</button>
         <button id="adminResetBtn">RESET</button>
+    </div>
+
+
+    <!-- 로그인 -->
+    <hr>
+    <h3>Login</h3>
+
+    <table>
+        <tr>
+            <td><label for="userId">userId</label></td>
+            <td><input type="text" value="test" id="userId"></td>
+        </tr>
+        <tr>
+            <td><label for="password">password</label></td>
+            <td><input type="text" value="1234" id="password"></td>
+        </tr>
+    </table>
+
+    <div>
+        <button id="loginBtn">login</button><button id="myInfoBtn">myInfo</button>
     </div>
 </body>
 </html>
