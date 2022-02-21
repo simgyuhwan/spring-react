@@ -33,9 +33,9 @@ public class JwtTokenProvider {
                 .setSigningKey(signingKey)
                 .build().parseClaimsJws(token);
 
-        String subject = parsedToken.getBody().getSubject();
+        Claims claims = parsedToken.getBody();
+        long userNo  = Long.parseLong((String)claims.get("uno"));
 
-        long userNo = Long.parseLong(subject);
         return userNo;
     }
     public String createToken(long userNo, String userId, List<String> roles){

@@ -2,6 +2,7 @@ package com.example.spa.config;
 
 import com.example.spa.common.security.CustomUserDetailService;
 import com.example.spa.common.security.filter.JwtAuthenticationFilter;
+import com.example.spa.common.security.filter.JwtRequestFilter;
 import com.example.spa.common.security.provider.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -42,6 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // JWT 관련 필터 보안 컨텍스트에 추가와 세션 STATELESS 설정
         http.addFilterAt(new JwtAuthenticationFilter(authenticationManager(), jwtTokenProvider),
                         UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(new JwtRequestFilter(jwtTokenProvider),UsernamePasswordAuthenticationFilter.class)
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
