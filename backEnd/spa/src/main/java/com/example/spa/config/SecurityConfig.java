@@ -6,8 +6,10 @@ import com.example.spa.common.security.filter.JwtRequestFilter;
 import com.example.spa.common.security.provider.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -25,6 +27,8 @@ import java.util.Arrays;
 @Slf4j
 @EnableWebSecurity
 @RequiredArgsConstructor
+// 시큐리티 애너테이션 활성화
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final JwtTokenProvider jwtTokenProvider;
@@ -46,6 +50,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(new JwtRequestFilter(jwtTokenProvider),UsernamePasswordAuthenticationFilter.class)
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
+        http.authorizeRequests()
+                .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+                .antMatchers("/").permitAll()
+                .antMatchers("/codes/**").permitAll()
+                .antMatchers("/codes/**").access("permitAll")
+                .antMatchers("/users/**").access("permitAll")
+                .antMatchers("/codegroups/**").access("hasRole('ADMIN')")
+                .antMatchers("/codedetail/**").access("hasRole('ADMIN')")
+                .anyRequest().authenticated();
     }
 
     @Override

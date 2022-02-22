@@ -6,6 +6,8 @@ $(document).ready(function(){
             type: "GET",
             url: "/users",
             contentType: "application/json; charset=UTF-8",
+                "Authorization" : "Bearer " + ACCESS_TOKEN
+            },
             success: function(data){
                 console.log(data);
 
@@ -23,6 +25,8 @@ $(document).ready(function(){
             type: "GET",
             url: "/users/" + $("#userNo").val(),
             contentType: "application/json; charset=UTF-8",
+                "Authorization" : "Bearer " + ACCESS_TOKEN
+            },
             success: function(data){
                 console.log(data);
 
@@ -67,6 +71,8 @@ $(document).ready(function(){
             url: "/users",
             data: JSON.stringify(userObject),
             contentType: "application/json; charset=UTF-8",
+                "Authorization" : "Bearer " + ACCESS_TOKEN
+            },
             success: function(){
                 alert("Created");
             },
@@ -82,6 +88,8 @@ $(document).ready(function(){
             type: "DELETE",
             url: "/users/" + $("#userNo").val(),
             contentType: "application/json; charset=UTF-8",
+                "Authorization" : "Bearer " + ACCESS_TOKEN
+            },
             success: function(){
                 alert("Deleted");
             },
@@ -123,6 +131,8 @@ $(document).ready(function(){
             url: "/users/" + userNoVal,
             data: JSON.stringify(userObject),
             contentType: "application/json; charset=UTF-8",
+                "Authorization" : "Bearer " + ACCESS_TOKEN
+            },
             success: function(){
                 alert("Modified");
             },

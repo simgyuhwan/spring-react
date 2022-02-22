@@ -5,6 +5,9 @@ $(document).ready(function(){
             type: "GET",
             url: "/codegroups",
             contentType: "application/json; charset=UTF-8",
+            headers: {
+                "Authorization" : "Bearer " + ACCESS_TOKEN
+            },
             success: function(data){
                 console.log(data);
                 alert(JSON.stringify(data));
@@ -21,6 +24,9 @@ $(document).ready(function(){
             type: "GET",
             url: "/codegroups/" + $("#groupCode").val(),
             contentType: "application/json; charset=UTF-8",
+            headers: {
+                "Authorization" : "Bearer " + ACCESS_TOKEN
+            },
             success: function(data){
                 console.log(data);
 
@@ -52,6 +58,8 @@ $(document).ready(function(){
             url: "/codegroups",
             data: JSON.stringify(codeGroupObject),
             contentType: "application/json; charset=UTF-8",
+                "Authorization" : "Bearer " + ACCESS_TOKEN
+            },
             success: function(){
                 alert("Created");
             },
@@ -67,6 +75,8 @@ $(document).ready(function(){
             type: "DELETE",
             url: "/codegroups/" + $("#groupCode").val(),
             contentType: "application/json; charset:UTF-8",
+                "Authorization" : "Bearer " + ACCESS_TOKEN
+            },
             success: function(){
                 alert("Delete");
             },
@@ -90,6 +100,8 @@ $(document).ready(function(){
             url: "/codegroups/" + groupCodeVal,
             data: JSON.stringify(codeGroupObject),
             contentType: "application/json; charset=UTF-8",
+                "Authorization" : "Bearer " + ACCESS_TOKEN
+            },
             success: function(){
                 alert("Modified");
             },
