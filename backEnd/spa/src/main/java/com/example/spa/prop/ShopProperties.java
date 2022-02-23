@@ -8,7 +8,8 @@ import org.springframework.stereotype.Component;
 @Getter
 @Setter
 @Component
-@ConfigurationProperties("jwt")
+@ConfigurationProperties("shop")
 public class ShopProperties {
     private String secretKey;
+    private String uploadPath;
 }

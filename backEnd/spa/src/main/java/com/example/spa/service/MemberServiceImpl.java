@@ -46,7 +46,7 @@ public class MemberServiceImpl implements MemberService{
             member.setUserName((String) valueArray[3]);
             member.setJob((String) valueArray[4]);
             member.setCoin((int) valueArray[5]);
-            member.setRegDate((LocalDateTime) valueArray[6]);
+            //member.setRegDate((LocalDateTime) valueArray[6]);
             memberList.add(member);
         }
         return memberList;

@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @ToString
 @Entity
 @Table(name = "board")
-public class Board {
+public class Board extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,13 +31,5 @@ public class Board {
 
     @Lob
     private String content;
-
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    @CreationTimestamp
-    private LocalDateTime regDate;
-
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    @UpdateTimestamp
-    private LocalDateTime updDate;
 
 }

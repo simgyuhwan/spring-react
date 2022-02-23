@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(of = {"groupCode", "codeValue"})
 @Table(name = "code_detail")
 @IdClass(CodeDetailId.class)
-public class CodeDetail {
+public class CodeDetail extends BaseEntity{
 
     @Id
     @Column(length = 3)
@@ -38,12 +38,4 @@ public class CodeDetail {
     @Column(length = 1)
     private String useYn = "Y";
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
-    @CreationTimestamp
-    private LocalDateTime regDate;
-
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
-    @UpdateTimestamp
-    private LocalDateTime upDate;
-
-}
+ }

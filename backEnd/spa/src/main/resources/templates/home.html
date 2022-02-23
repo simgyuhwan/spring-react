@@ -14,6 +14,7 @@
 <script type="text/javascript" src="js/app/login.js"></script>
 <script type="text/javascript" src="js/app/board.js"></script>
 <script type="text/javascript" src="js/app/notice.js"></script>
+<script type="text/javascript" src="js/app/item.js"></script>
 
 <body>
     <h2 th:text="#{common.homeWelcome}"></h2>
@@ -206,16 +207,16 @@
             <td><label for="boardWriter">writer</label></td>
             <td><input type="text" value="" id="boardWriter"></td>
         </tr>
-        <div>
-            <button id="boardListBtn">LIST</button>
-            <button id="boardReadBtn">READ</button>
-            <button id="boardRegisterBtn">REGISTER</button>
-            <button id="boardDeleteBtn">DELETE</button>
-            <button id="boardModifyBtn">MODIFY</button>
-            <button id="boardResetBtn">RESET</button>
-        </div>
-    </table>
 
+    </table>
+    <div>
+        <button id="boardListBtn">LIST</button>
+        <button id="boardReadBtn">READ</button>
+        <button id="boardRegisterBtn">REGISTER</button>
+        <button id="boardDeleteBtn">DELETE</button>
+        <button id="boardModifyBtn">MODIFY</button>
+        <button id="boardResetBtn">RESET</button>
+    </div>
     <!-- 공지사항 REST -->
     <hr>
     <h3>Notice</h3>
@@ -234,16 +235,65 @@
             <td><textarea id="noticeContent"></textarea></td>
         </tr>
 
-        <div>
-            <button id="noticeListBtn">LIST</button>
-            <button id="noticeReadBtn">READ</button>
-            <button id="noticeRegisterBtn">REGISTER</button>
-            <button id="noticeDeleteBtn">DELETE</button>
-            <button id="noticeModifyBtn">MODIFY</button>
-            <button id="noticeResetBtn">RESET</button>
-        </div>
     </table>
 
+    <div>
+        <button id="noticeListBtn">LIST</button>
+        <button id="noticeReadBtn">READ</button>
+        <button id="noticeRegisterBtn">REGISTER</button>
+        <button id="noticeDeleteBtn">DELETE</button>
+        <button id="noticeModifyBtn">MODIFY</button>
+        <button id="noticeResetBtn">RESET</button>
+    </div>
+    <!-- 상품관리 REST -->
+    <hr>
+    <h3>Item</h3>
+
+    <table>
+        <tr>
+            <td><label for="itemId">itemId</label></td>
+            <td><input type="text" value="" id="itemId"></td>
+        </tr>
+        <tr>
+            <td><label for="itemName">itemName</label></td>
+            <td><input type="text" value="" id="itemName"></td>
+        </tr>
+        <tr>
+            <td><label for="itemPrice">price</label></td>
+            <td><input type="text" value="" id="itemPrice"></td>
+        </tr>
+        <tr>
+            <td><label for="itemDescription">description</label></td>
+            <td><textarea id="itemDescription"></textarea></td>
+        </tr>
+        <tr>
+            <td><label for="itemInputFile">original file</label></td>
+            <td><input type="file" name="picture" id="itemInputFile"/> </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <div id="preview"><img src="" width="210" height="50"></div>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="itemInputFile2"> preview file</label> </td>
+            <td><input type="file" name="picture" id="itemInputFile2"/> </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><div id="preview2"><img src="" width="210" height="50"></div></td>
+        </tr>
+    </table>
+    <div>
+        <button id="itemListBtn">LIST</button>
+        <button id="itemReadBtn">READ</button>
+        <button id="itemRegisterBtn">REGISTER</button>
+        <button id="itemDeleteBtn">DELETE</button>
+        <button id="itemModifyBtn">MODIFY</button>
+        <button id="itemResetBtn">RESET</button>
+        <button id="itemDownloadBtn">DOWNLOAD</button>
+    </div>
 
 </body>
 </html>

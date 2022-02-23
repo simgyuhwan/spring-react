@@ -40,7 +40,7 @@ $(document).ready(function(){
         $.ajax({
             type:"POST",
             url : "/notices",
-            data: JSON.stringify(noticeObject)
+            data: JSON.stringify(noticeObject),
             contentType: "application/json; charset=UTF-8",
             headers : {
                 "Authorization" : "Bearer " + ACCESS_TOKEN
@@ -85,7 +85,7 @@ $(document).ready(function(){
         $.ajax({
             type:"PUT",
             url : "/notices/" + noticeNoVal,
-            data: JSON.stringify(noticeObject)
+            data: JSON.stringify(noticeObject),
             contentType: "application/json; charset=UTF-8",
             headers : {
                 "Authorization" : "Bearer " + ACCESS_TOKEN

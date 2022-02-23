@@ -21,7 +21,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @Table(name = "member")
-public class Member {
+public class Member extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,15 +44,6 @@ public class Member {
     private String userName;
 
     private int coin;
-
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
-    @CreationTimestamp
-    private LocalDateTime regDate;
-
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
-    @UpdateTimestamp
-    private LocalDateTime updDate;
-
 
     // JoinColumn 을 통해서 외래키 지정
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @Entity
 @NoArgsConstructor
 @Table(name="member_auth")
-public class MemberAuth {
+public class MemberAuth extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,13 +26,5 @@ public class MemberAuth {
 
     @Column(length = 50)
     private String auth;
-
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
-    @CreationTimestamp
-    private LocalDateTime regTime;
-
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
-    @UpdateTimestamp
-    private LocalDateTime updDate;
 
 }

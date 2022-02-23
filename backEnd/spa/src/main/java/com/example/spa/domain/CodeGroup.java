@@ -21,7 +21,7 @@ import java.util.List;
 @EqualsAndHashCode(of = "groupCode")
 @Table(name = "code_group")
 @NoArgsConstructor
-public class CodeGroup {
+public class CodeGroup extends BaseEntity{
 
     @Id
     @Column(length = 3)
@@ -38,12 +38,5 @@ public class CodeGroup {
     @JoinColumn(name="groupCode")
     private List<CodeDetail> codeDetails;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
-    @CreationTimestamp
-    private LocalDateTime regDate;
-
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
-    @UpdateTimestamp
-    private LocalDateTime upDate;
 
 }

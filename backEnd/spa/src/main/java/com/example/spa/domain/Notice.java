@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @Table(name = "notice")
-public class Notice {
+public class Notice extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,13 +22,5 @@ public class Notice {
 
     @Lob
     private String content;
-
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    @CreationTimestamp
-    private LocalDateTime regDate;
-
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    @UpdateTimestamp
-    private LocalDateTime updDate;
 
 }
