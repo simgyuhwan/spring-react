@@ -53,7 +53,7 @@ public class MemberController {
         return new ResponseEntity<>(member, HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN','MEMBER'")
+    @PreAuthorize("hasAnyRole('ADMIN','MEMBER')")
     @PutMapping("/{userNo}")
     public ResponseEntity<Member> modify(@PathVariable("userNo")Long userNo, @Validated @RequestBody Member member) throws Exception{
         member.setUserNo(userNo);
@@ -86,7 +86,7 @@ public class MemberController {
         return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN','MEMBER'")
+    @PreAuthorize("hasAnyRole('ADMIN','MEMBER')")
     @GetMapping("/myinfo")
     public ResponseEntity<Member> getMyInfo(@AuthenticationPrincipal CustomUser customUser) throws Exception{
         Long userNo = customUser.getUserNo();
