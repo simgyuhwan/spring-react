@@ -5,7 +5,7 @@ import SignInForm from "../../components/auth/SignInForm";
 // Router 추가
 import { withRouter, RouteComponentProps } from "react-router-dom";
 // login 은 액션 함수
-import { login } from "../../modules/auth";
+import { login, checkMyInfo } from "../../modules/auth";
 // RootState 지금은 accessToken을 가져오기 위해 선언
 import { RootState } from "../../modules";
 
@@ -15,8 +15,9 @@ const SignInContainer = ({history}: RouteComponentProps)=>{
     const dispatch = useDispatch();
 
     // 스토어 상태 조회
-    const {accessToken} = useSelector(({auth}:RootState)=>({
+    const {accessToken, myInfo} = useSelector(({auth}:RootState)=>({
         accessToken : auth.accessToken,
+        myInfo : auth.myInfo
     }));
 
     // 로그인 처리
@@ -28,15 +29,22 @@ const SignInContainer = ({history}: RouteComponentProps)=>{
             console.log(e);
         }
     };
+    
+    useEffect(()=>{
+        if(accessToken){
+            dispatch(checkMyInfo());
+        }
+    },[accessToken, dispatch]);
+
 
     // 마운트 될 때 엑세스 토큰 상태 정보 확인
     useEffect(()=>{
         // 만약 토큰 값이 있다면 / 페이지로 이동한다.
-        if(accessToken){
+        if(myInfo){
             alert("로그인 되었습니다.");
             history.push("/");
         }
-    },[accessToken, dispatch, history]);
+    },[myInfo, history]);
 
     return <SignInForm onSignIn={onSignIn}/>;
 };

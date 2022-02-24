@@ -5,14 +5,20 @@ import * as api from "../lib/api";
 import client from "../lib/client";
 import { AxiosResponse } from "axios";
 import { LoginInput } from "../App";
+import { MyInfo } from "../App";
 
 // 액션 타입 
 const SET_ACCESS_TOKEN = "auth/SET_ACCESS_TOKEN";
 const LOGIN = "auth/LOGIN";
+const SET_MY_INFO ="auth/SET_MY_INFO";
+const CHECK_MY_INFO ="auth/CHECK_MY_INFO";
 
 // 액션 생성 함수
 export const setAccessToken = createAction(SET_ACCESS_TOKEN, (accessToekn:string)=> accessToekn);
 export const login = createAction(LOGIN, ({userId, password}: LoginInput)=>({userId, password}));
+export const setMyInfo = createAction(SET_MY_INFO, (myInfo:MyInfo)=> myInfo);
+export const checkMyInfo = createAction(CHECK_MY_INFO);
+
 
 // 비동기 액션을 수행하는 태스크 작성
 function * loginSaga(action: ReturnType<typeof login>){
@@ -35,17 +41,30 @@ function * loginSaga(action: ReturnType<typeof login>){
     }
 }
 
+function * checkMyInfoSaga(){
+    try{
+        const response: AxiosResponse = yield call(api.getMyInfo);
+        yield put(setMyInfo(response.data));
+    }catch(e){
+        console.log(e);
+    }
+}
+
 // 로그인 사가 함수 작성
 export function * authSaga(){
     yield takeLatest(LOGIN, loginSaga);
+    // checkMyInfoSaga 테스크 실행하는 사가 함수
+    yield takeLatest(CHECK_MY_INFO, checkMyInfoSaga);
 }
 
 export interface AuthState{
     accessToken:string;
+    myInfo:MyInfo| null;
 }
 
 const initialState: AuthState = {
     accessToken: "",
+    myInfo: null,
 };
 
 // 리듀서 함수 정의 
@@ -55,6 +74,10 @@ const auth = createReducer(
         [SET_ACCESS_TOKEN]: (state, action)=>({
             ...state,
             accessToken: action.payload,
+        }),
+        [SET_MY_INFO]: (state, action) =>({
+            ...state,
+            myInfo: action.payload,
         }),
     },
 );

@@ -22,4 +22,15 @@ export interface LoginInput{
   userId:string;
   password:string;
 }
+
+// 권한 정보를 나타내는 인터페이스이다.
+export interface AuthInfo{
+  auth: string;
+}
+
+export interface MyInfo{
+  userName: string;
+  authList: AuthInfo[];
+}
+
 export default App;
