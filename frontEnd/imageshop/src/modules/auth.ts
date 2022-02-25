@@ -4,8 +4,8 @@ import {takeLatest, call, put} from "redux-saga/effects"
 import * as api from "../lib/api";
 import client from "../lib/client";
 import { AxiosResponse } from "axios";
-import { LoginInput } from "../App";
-import { MyInfo } from "../App";
+import { LoginInput, MyInfo } from "../App";
+import Cookies from "js-cookie";
 
 // 액션 타입 
 const SET_ACCESS_TOKEN = "auth/SET_ACCESS_TOKEN";
@@ -16,7 +16,7 @@ const CHECK_MY_INFO ="auth/CHECK_MY_INFO";
 // 액션 생성 함수
 export const setAccessToken = createAction(SET_ACCESS_TOKEN, (accessToekn:string)=> accessToekn);
 export const login = createAction(LOGIN, ({userId, password}: LoginInput)=>({userId, password}));
-export const setMyInfo = createAction(SET_MY_INFO, (myInfo:MyInfo)=> myInfo);
+export const setMyInfo = createAction(SET_MY_INFO, (myInfo:MyInfo | null)=> myInfo);
 export const checkMyInfo = createAction(CHECK_MY_INFO);
 
 
@@ -36,6 +36,10 @@ function * loginSaga(action: ReturnType<typeof login>){
 
         // axios의 기본 헤더 값에 토큰을 넣어준다. 이제 기본 요청시 JWT를 포함해서 보내게 된다. 
         client.defaults.headers.common.authorization = `Bearer ${accessToken}`;
+
+        // 쿠키에 엑세스 토큰 저장(key, value, expires)
+        Cookies.set("accessToken", accessToken, {expires:1});
+
     }catch(e){
         console.log(e);
     }
