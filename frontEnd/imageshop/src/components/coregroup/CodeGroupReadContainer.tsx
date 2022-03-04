@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 import {RootState} from "../../modules";
 
 interface Props{
-
+    readonly groupCode:string;
 }
 
 const CodeGroupReadContainer = ({groupCode}: Props) =>{
@@ -18,11 +18,12 @@ const CodeGroupReadContainer = ({groupCode}: Props) =>{
 
     // 스토어 상태 조회
     const {codeGroup, isLoading} = useSelector(({codegroup, loading}: RootState)=>({
-
+        codeGroup:codegroup.codeGroup,
+        isLoading:loading[FETCH_ONE],
     }));
 
     useEffect(()=>{
-
+        dispatch(fetchOne(groupCode));
     }, [dispatch,groupCode]);
 
     // 삭제 처리

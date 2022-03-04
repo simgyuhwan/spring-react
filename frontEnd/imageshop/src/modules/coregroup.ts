@@ -30,9 +30,9 @@ export function * codeGroupSaga(){
 
 // 상태 인터페이스 정의
 export interface CodeGroupState{
-    codeGroup : CodeGroup | null,
-    codeGroups : CodeGroup[],
-    error : any
+    codeGroup : CodeGroup | null;
+    codeGroups : CodeGroup[];
+    error : any;
 }
 
 // 초기 상태
@@ -48,7 +48,23 @@ const codeGroup = createReducer(
     {
         [FETCH_ONE] : (state) =>({
             ...state,
-
+            codeGroup:null,
+        }),
+        [FETCH_ONE_SUCCESS]: (state, action) =>({
+            ...state,
+            codeGroup: action.payload,
+        }),
+        [FETCH_ONE_FAILURE]: (state, action) =>({
+            ...state,
+            error: action.payload,
+        }),
+        [FETCH_LIST] : (state) =>({
+            ...state,
+            codeGroups: [],
+        }),
+        [FETCH_LIST_SUCCESS]: (state, action) =>({
+            ...state,
+            codeGroups: action.payload,
         }),
         [FETCH_LIST_FAILURE]: (state, action) =>({
             ...state,

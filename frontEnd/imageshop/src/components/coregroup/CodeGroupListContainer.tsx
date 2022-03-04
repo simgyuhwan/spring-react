@@ -11,13 +11,13 @@ const CodeGroupListContainer = ()=>{
 
     // 스토어 상태 조회
     const {codeGroups, isLoading } = useSelector(({codegroup, loading}: RootState)=>({
-
-    }))
+        codeGroups:codegroup.codeGroups,
+        isLoading:loading[FETCH_LIST],
+    }));
 
     // 마운트 될 때 코드그룹 목록을 가져옴
     useEffect(()=>{
-
-
+        dispatch(fetchList());
     }, [dispatch]);
 
     // 코드그룹 목록 컴포넌트 표시
