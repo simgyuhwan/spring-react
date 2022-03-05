@@ -16,7 +16,7 @@ export const endLoading = createAction(
 
 // 상태 인터페이스 정의
 export interface LoadingState{
-
+    [key:string]: boolean;
 }
 
 // 초기 상태

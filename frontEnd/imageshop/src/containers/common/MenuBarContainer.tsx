@@ -5,7 +5,8 @@ import { getAuthorized, isAdmin } from "../../modules/selector";
 import { RootState } from "../../modules";
 
 interface Props{
-    
+    readonly isAuthorized: boolean;
+    readonly isAdmin:boolean;
 }
 
 // 사용자 권한을 속성으로 수신
