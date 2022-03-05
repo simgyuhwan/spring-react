@@ -15,7 +15,7 @@ public class Item extends BaseEntity{
     private Long itemId;
 
     @Column(length = 50, nullable = false)
-    private String ItemName;
+    private String itemName;
 
     private Integer price;
 

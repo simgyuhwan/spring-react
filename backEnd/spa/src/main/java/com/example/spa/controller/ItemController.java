@@ -1,21 +1,28 @@
 package com.example.spa.controller;
 
+import com.example.spa.common.security.domain.CustomUser;
 import com.example.spa.domain.Item;
+import com.example.spa.domain.Member;
 import com.example.spa.prop.ShopProperties;
 import com.example.spa.service.ItemService;
+import com.example.spa.service.MemberService;
+import com.example.spa.service.UserItemService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.MessageSource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
 @RestController
@@ -23,7 +30,10 @@ import java.util.UUID;
 @RequestMapping("/items")
 public class ItemController {
     private final ShopProperties shopProperties;
+    private final MemberService memberService;
     private final ItemService itemService;
+    private final UserItemService userItemService;
+    private final MessageSource messageSource;
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
@@ -202,4 +212,21 @@ public class ItemController {
         }
         return entity;
     }
+
+    @GetMapping(value = "/buy/{itemId}", produces = "text/plain;charset=UTF-8")
+    public ResponseEntity<String> buy(@PathVariable("itemId")Long itemId, @AuthenticationPrincipal CustomUser customUser) throws Exception{
+        Long userNo = customUser.getUserNo();
+
+        Member member = memberService.read(userNo);
+        member.setCoin(memberService.getCoin(userNo));
+
+        Item item = itemService.read(itemId);
+
+        userItemService.register(member, item);
+
+        String message = messageSource.getMessage("item.purchaseComplete", null, Locale.KOREAN);
+        return new ResponseEntity<>(message, HttpStatus.OK);
+    }
+
+
 }
