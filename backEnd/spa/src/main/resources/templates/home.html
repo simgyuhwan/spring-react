@@ -15,6 +15,7 @@
 <script type="text/javascript" src="js/app/board.js"></script>
 <script type="text/javascript" src="js/app/notice.js"></script>
 <script type="text/javascript" src="js/app/item.js"></script>
+<script type="text/javascript" src="js/app/coin.js"></script>
 
 <body>
     <h2 th:text="#{common.homeWelcome}"></h2>
@@ -295,5 +296,20 @@
         <button id="itemDownloadBtn">DOWNLOAD</button>
     </div>
 
+    <hr>
+    <h3>Coin</h3>
+
+    <table>
+        <tr>
+            <td><label for="coinAmount">amount</label></td>
+            <td><input type="text" value="1000" id="coinAmount"></td>
+        </tr>
+    </table>
+
+    <div>
+        <button id="coinChargeListBtn">LIST CHARGE</button>
+        <button id="coinChargeBtn">CHARGE</button>
+        <button id="coinResetBtn">RESET</button>
+    </div>
 </body>
 </html>
