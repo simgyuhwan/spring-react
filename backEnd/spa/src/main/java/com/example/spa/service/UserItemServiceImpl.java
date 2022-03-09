@@ -11,6 +11,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class UserItemServiceImpl implements UserItemService{
@@ -44,5 +48,46 @@ public class UserItemServiceImpl implements UserItemService{
         payCoinRepository.save(payCoin);
 
         userItemRepository.save(userItem);
+    }
+
+    @Override
+    public List<UserItem> list(long userNo) throws Exception {
+        List<Object[]> valueArrays = userItemRepository.listUserItem(userNo);
+        List<UserItem> userItemList = new ArrayList<>();
+
+        for(Object[] valueArray : valueArrays){
+            UserItem userItem = new UserItem();
+
+            userItem.setUserItemNo((Long)valueArray[0]);
+            userItem.setUserNo((Long)valueArray[1]);
+            userItem.setItemId((Long)valueArray[2]);
+            userItem.setRegDate((LocalDateTime) valueArray[3]);
+            userItem.setItemName((String)valueArray[4]);
+            userItem.setPrice((int)valueArray[5]);
+            userItem.setDescription((String)valueArray[6]);
+            userItem.setPictureUrl((String)valueArray[7]);
+
+            userItemList.add(userItem);
+        }
+        return userItemList;
+    }
+
+    @Override
+    public UserItem read(Long userItemNo) throws Exception {
+        List<Object[]> valueArrays = userItemRepository.readUserItem(userItemNo);
+
+        Object[] valueArray = valueArrays.get(0);
+
+        UserItem userItem = new UserItem();
+        userItem.setUserItemNo((Long)valueArray[0]);
+        userItem.setUserNo((Long)valueArray[1]);
+        userItem.setItemId((Long)valueArray[2]);
+        userItem.setRegDate((LocalDateTime) valueArray[3]);
+        userItem.setItemName((String)valueArray[4]);
+        userItem.setPrice((int)valueArray[5]);
+        userItem.setDescription((String)valueArray[6]);
+        userItem.setPictureUrl((String)valueArray[7]);
+
+        return userItem;
     }
 }

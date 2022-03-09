@@ -3,6 +3,7 @@ package com.example.spa.domain;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
@@ -17,6 +18,7 @@ import java.time.LocalDateTime;
 @EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass
 @Getter
+@Setter
 public abstract class BaseEntity {
 
     @JsonFormat(pattern = "yyyy-MM-dd")
@@ -27,6 +29,5 @@ public abstract class BaseEntity {
     @JsonFormat(pattern = "yyyy-MM-dd")
     @LastModifiedDate
     private LocalDateTime updDate;
-
 
 }

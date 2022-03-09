@@ -8,4 +8,6 @@ public interface CoinService {
     public void charge(ChargeCoin chargeCoin)throws Exception;
 
     public List<ChargeCoin> list(Long userNo);
+
+    public List<Object[]> listPayHistory(Long userNo)throws Exception;
 }

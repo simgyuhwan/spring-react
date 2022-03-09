@@ -4,6 +4,7 @@ import com.example.spa.domain.ChargeCoin;
 import com.example.spa.domain.Member;
 import com.example.spa.repository.ChargeCoinRepository;
 import com.example.spa.repository.MemberRepository;
+import com.example.spa.repository.PayCoinRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ public class CoinServiceImpl implements CoinService{
 
     private final ChargeCoinRepository chargeCoinRepository;
     private final MemberRepository memberRepository;
+    private final PayCoinRepository payCoinRepository;
 
     @Transactional
     @Override
@@ -35,5 +37,10 @@ public class CoinServiceImpl implements CoinService{
     @Override
     public List<ChargeCoin> list(Long userNo) {
         return chargeCoinRepository.findAll(Sort.by(Sort.Direction.DESC,"historyNo"));
+    }
+
+    @Override
+    public List<Object[]> listPayHistory(Long userNo) throws Exception {
+        return payCoinRepository.listPayHistory(userNo);
     }
 }

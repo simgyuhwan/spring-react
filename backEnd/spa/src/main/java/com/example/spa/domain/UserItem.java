@@ -33,6 +33,5 @@ public class UserItem extends BaseEntity{
     @Transient
     private String pictureUrl;
 
-
 }
 
