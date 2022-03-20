@@ -49,7 +49,7 @@ public class CoinController {
 
     @GetMapping("/pay")
     @PreAuthorize("hasRole('MEMBER')")
-    public ResponseEntity<List<PayCoin>> listPayHistory(@AuthenticationPrincipal CustomUser customUser) throws Exception{
+    public ResponseEntity<List<Object[]>> listPayHistory(@AuthenticationPrincipal CustomUser customUser) throws Exception{
         Long userNo = customUser.getUserNo();
 
         return new ResponseEntity<>(service.listPayHistory(userNo), HttpStatus.OK);
