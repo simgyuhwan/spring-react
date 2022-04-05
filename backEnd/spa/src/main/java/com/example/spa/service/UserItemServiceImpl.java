@@ -1,5 +1,6 @@
 package com.example.spa.service;
 
+import com.example.spa.common.exception.NotEnoughCoinException;
 import com.example.spa.domain.Item;
 import com.example.spa.domain.Member;
 import com.example.spa.domain.PayCoin;
@@ -42,6 +43,11 @@ public class UserItemServiceImpl implements UserItemService{
 
         int coin = memberEntity.getCoin();;
         int amount= payCoin.getAmount();
+
+        if(coin < price){
+            throw new NotEnoughCoinException("There is Not Enough Coin");
+        }
+
         memberEntity.setCoin(coin - amount);
 
         memberRepository.save(memberEntity);

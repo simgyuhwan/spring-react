@@ -1,6 +1,8 @@
 package com.example.spa.config;
 
+import com.example.spa.common.security.CustomAccessDeniedHandler;
 import com.example.spa.common.security.CustomUserDetailService;
+import com.example.spa.common.security.RestAuthenticationEntryPoint;
 import com.example.spa.common.security.filter.JwtAuthenticationFilter;
 import com.example.spa.common.security.filter.JwtRequestFilter;
 import com.example.spa.common.security.provider.JwtTokenProvider;
