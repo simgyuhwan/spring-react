@@ -8,6 +8,7 @@ import com.example.spa.common.security.filter.JwtRequestFilter;
 import com.example.spa.common.security.provider.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -56,6 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+                .requestMatchers(EndpointRequest.toAnyEndpoint()).hasAnyRole("ADMIN")
                 .antMatchers("/").permitAll()
                 .antMatchers("/codes/**").permitAll()
                 .antMatchers("/codes/**").access("permitAll")
