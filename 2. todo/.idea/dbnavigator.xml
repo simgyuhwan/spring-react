@@ -26,8 +26,7 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="ec55068f-6250-4489-ba12-a88901a5601b">
-        <schema name="shop" object-types="table, view, procedure, function" />
-        <schema name="todo" object-types="table, view, procedure, function" />
+        <schema name="todo" object-types="table, view, procedure, function, constraint, index, column, dataset trigger" />
       </connection>
     </loaded-nodes>
   </component>
@@ -42,11 +41,17 @@
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="ec55068f-6250-4489-ba12-a88901a5601b" />
   </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="ec55068f-6250-4489-ba12-a88901a5601b" dataset="todo.todo" active-filter-id="" />
+  </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
+  </component>
+  <component name="DBNavigator.Project.FileConnectionMappingManager">
+    <mapping file-url="file://$PROJECT_DIR$/back/todo/src/main/resources/schema.sql" connection-id="ec55068f-6250-4489-ba12-a88901a5601b" session-id="MAIN" current-schema="todo" />
   </component>
   <component name="DBNavigator.Project.MethodExecutionManager">
     <method-browser />
@@ -64,7 +69,9 @@
     <filters />
   </component>
   <component name="DBNavigator.Project.ScriptExecutionManager" clear-outputs="true">
-    <recently-used-interfaces />
+    <recently-used-interfaces>
+      <mapping database-type="MYSQL" interface-id="DEFAULT" />
+    </recently-used-interfaces>
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
