@@ -7,11 +7,11 @@
         <option name="delegatedBuild" value="false" />
         <option name="testRunner" value="PLATFORM" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/back/todo" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/todo" />
         <option name="gradleJvm" value="#JAVA_HOME" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$/back/todo" />
+            <option value="$PROJECT_DIR$/todo" />
           </set>
         </option>
       </GradleProjectSettings>

@@ -1,9 +1,7 @@
 package com.sim.todo.dto;
 
-import com.sim.todo.model.TodoEntity;
+import com.sim.todo.entity.TodoEntity;
 import lombok.*;
-
-import javax.persistence.Entity;
 
 @Builder
 @NoArgsConstructor

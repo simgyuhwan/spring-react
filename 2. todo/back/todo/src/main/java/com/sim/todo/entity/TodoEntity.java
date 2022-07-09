@@ -1,4 +1,4 @@
-package com.sim.todo.model;
+package com.sim.todo.entity;
 
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
