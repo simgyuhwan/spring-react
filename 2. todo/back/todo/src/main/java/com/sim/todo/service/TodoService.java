@@ -23,6 +23,10 @@ public class TodoService {
         return repository.findByUserId(entity.getUserId());
     }
 
+    public List<TodoEntity> retrieve(final String userId){
+        return repository.findByUserId(userId);
+    }
+
     // 검증
     private void validate(TodoEntity entity) {
         if(entity == null){

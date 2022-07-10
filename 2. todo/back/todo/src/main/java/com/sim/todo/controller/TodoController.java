@@ -6,16 +6,13 @@ import com.sim.todo.entity.TodoEntity;
 import com.sim.todo.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/Todo")
+@RequestMapping("/todo")
 public class TodoController {
 
     @Autowired
@@ -46,5 +43,20 @@ public class TodoController {
                     .error(error).build();
             return ResponseEntity.badRequest().body(response);
         }
+   }
+
+   @GetMapping
+    public ResponseEntity<?> retrieveTodoList(){
+       String temporaryUserId = "temporary-user";
+
+       List<TodoEntity> entities = service.retrieve(temporaryUserId);
+
+       List<TodoDto> dtos = entities.stream().map(TodoDto::new)
+               .collect(Collectors.toList());
+
+       ResponseDTO<TodoDto> response = ResponseDTO.<TodoDto>builder().data(dtos)
+               .build();
+
+       return ResponseEntity.ok().body(response);
    }
 }
