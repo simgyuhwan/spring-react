@@ -18,4 +18,9 @@ public class TodoEntity {
     private String userId;
     private String title;
     private boolean done;
+
+    public void init(String userId){
+        id = null;
+        this.userId = userId;
+    }
 }
