@@ -23,4 +23,14 @@ public class TodoEntity {
         id = null;
         this.userId = userId;
     }
+
+    public void initUserId(String userId){
+        this.userId = userId;
+    }
+
+    public TodoEntity update(TodoEntity entity){
+        this.title = entity.getTitle();
+        this.done = entity.isDone();
+        return this;
+    }
 }

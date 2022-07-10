@@ -6,7 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityExistsException;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -27,6 +29,21 @@ public class TodoService {
         return repository.findByUserId(userId);
     }
 
+    public List<TodoEntity> update(final TodoEntity entity){
+        validate(entity);
+
+        updateEntity(entity);
+
+        return retrieve(entity.getUserId());
+    }
+
+    // 수정
+    private void updateEntity(TodoEntity entity) {
+        repository.save(repository.findById(entity.getId())
+                .orElseThrow(EntityExistsException::new)
+                .update(entity));
+    }
+
     // 검증
     private void validate(TodoEntity entity) {
         if(entity == null){
@@ -39,6 +56,5 @@ public class TodoService {
             throw new RuntimeException("Unknown user.");
         }
     }
-
 
 }
