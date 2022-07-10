@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityExistsException;
 import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @Service
@@ -37,6 +36,7 @@ public class TodoService {
         return retrieve(entity.getUserId());
     }
 
+    // 삭제
     public List<TodoEntity> delete(final TodoEntity entity){
         validate(entity);
 
@@ -48,7 +48,6 @@ public class TodoService {
         }
         return retrieve(entity.getUserId());
     }
-
 
     // 수정
     private void updateEntity(TodoEntity entity) {
@@ -69,7 +68,4 @@ public class TodoService {
             throw new RuntimeException("Unknown user.");
         }
     }
-
-
-
 }
