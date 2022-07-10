@@ -75,4 +75,24 @@ public class TodoController {
 
        return ResponseEntity.ok().body(response);
    }
+
+   @DeleteMapping
+    public ResponseEntity<?> deleteTodo(@RequestBody TodoDto dto){
+        try {
+            String temporaryUserId = "temporary-user";
+            TodoEntity entity = TodoDto.toEntity(dto);
+
+            entity.initUserId(temporaryUserId);
+
+            List<TodoEntity> entities = service.delete(entity);
+
+            List<TodoDto> dtos = entities.stream().map(TodoDto::new).collect(Collectors.toList());
+            ResponseDTO<TodoDto> response = ResponseDTO.<TodoDto>builder().data(dtos).build();
+            return ResponseEntity.ok().body(response);
+        }catch (Exception e){
+            String error = e.getMessage();
+            ResponseDTO<TodoDto> response = ResponseDTO.<TodoDto>builder().error(error).build();
+            return ResponseEntity.badRequest().body(response);
+        }
+   }
 }

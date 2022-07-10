@@ -37,6 +37,19 @@ public class TodoService {
         return retrieve(entity.getUserId());
     }
 
+    public List<TodoEntity> delete(final TodoEntity entity){
+        validate(entity);
+
+        try{
+            repository.delete(entity);
+        }catch (Exception e){
+            log.error("error deleting entity", entity.getId(), e);
+            throw new RuntimeException("error deleting entity " + entity.getId());
+        }
+        return retrieve(entity.getUserId());
+    }
+
+
     // 수정
     private void updateEntity(TodoEntity entity) {
         repository.save(repository.findById(entity.getId())
@@ -56,5 +69,7 @@ public class TodoService {
             throw new RuntimeException("Unknown user.");
         }
     }
+
+
 
 }
